@@ -1,20 +1,30 @@
-"use client";  // この行を追加
+"use client";  
 
 import { useState } from 'react';
+import React from "react";
+
+// 質問の型定義
+interface Question {
+  question: string;
+}
 
 export default function InterviewPage() {
-  const [questions, setQuestions] = useState([]);
+  // 型を指定して、questionsを定義
+  const [questions, setQuestions] = useState<Question[]>([]);
   const [csvFile, setCsvFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
   const [csvUploadSuccess, setCsvUploadSuccess] = useState<boolean | null>(null); // 型修正
+
+  // Heroku上のFastAPIのURLを指定
+  const FASTAPI_URL = "https://mvp-for-abmc-95a9eb1015ef.herokuapp.com/generate-questions";  // ここをHerokuのURLに置き換える
 
   // アンケート項目生成
   const generateQuestions = async () => {
     setLoading(true);
     try {
-      const response = await fetch('/api/interview', { method: 'GET' });
+      const response = await fetch(`${FASTAPI_URL}`, { method: 'GET' }); // HerokuのFastAPIを呼び出す
       const data = await response.json();
-      setQuestions(data.questions);
+      setQuestions(data); // FastAPIからの質問をセット
     } catch (error) {
       console.error('Error fetching interview questions:', error);
     } finally {
@@ -64,7 +74,7 @@ export default function InterviewPage() {
       {/* アンケート項目の表示 */}
       <ul>
         {questions.map((question, index) => (
-          <li key={index}>{question}</li>
+          <li key={index}>{question.question}</li>  // 箇条書きで質問を表示
         ))}
       </ul>
 
