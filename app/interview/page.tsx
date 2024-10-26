@@ -58,7 +58,7 @@ export default function InterviewPage() {
       
       {/* アンケート項目生成ボタン */}
       <button onClick={generateQuestions} disabled={loading}>
-        {loading ? 'Generating...' : 'Generate Interview Questions'}
+        {loading ? 'Generating...' : 'インタビューの質問を生成'}
       </button>
 
       {/* アンケート項目の表示 */}
@@ -70,7 +70,7 @@ export default function InterviewPage() {
 
       {/* CSVファイルアップロードフィールド */}
       <div>
-        <h2>Upload CSV for Insight Analysis</h2>
+        <h2>アンケートのインサイト分析のためにアンケート結果のCSVデータをアップロードしてください</h2>
         <input type="file" accept=".csv" onChange={handleFileUpload} />
         <button onClick={uploadCsv}>Upload CSV</button>
         {csvUploadSuccess && <p>CSV uploaded successfully!</p>}
