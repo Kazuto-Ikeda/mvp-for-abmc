@@ -1,3 +1,5 @@
+"use client";  // この行を追加
+
 import { useState } from 'react';
 
 export default function InterviewPage() {
