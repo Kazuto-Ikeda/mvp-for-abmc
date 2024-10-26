@@ -4,6 +4,7 @@ export default function Home() {
   return (
     <div>
       <nav>
+        <h1>Welcome to the Auto create Business Model Campus</h1>
         <ul>
           <li><Link href="/home">Home</Link></li>
           <li><Link href="/persona">Persona</Link></li>
@@ -13,7 +14,6 @@ export default function Home() {
           <li><Link href="/create-bmc">Create BMC</Link></li>
         </ul>
       </nav>
-      <h1>Welcome to the App</h1>
     </div>
   );
 }
